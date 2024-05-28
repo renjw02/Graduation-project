@@ -1,0 +1,315 @@
+[
+  {
+    "db_id": "imdb",
+    "table_name": "actor",
+    "scope": "sql",
+    "column_names": [
+      "aid",
+      "gender",
+      "name",
+      "nationality",
+      "birth_city",
+      "birth_year"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "text",
+      "text",
+      "text",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "cast",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "aid",
+      "role"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "text"
+    ],
+    "fk": [
+      "msid",
+      "aid"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "classification",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "gid"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "gid"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "company",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "name",
+      "country_code"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "varchar(255)"
+    ],
+    "fk": [
+      "name"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "copyright",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "cid"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "cid"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "directed_by",
+    "scope": "cypher",
+    "column_names": [
+      "id",
+      "msid",
+      "did"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "did"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "director",
+    "scope": "cypher",
+    "column_names": [
+      "did",
+      "gender",
+      "name",
+      "nationality",
+      "birth_city",
+      "birth_year"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "text",
+      "text",
+      "text",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "genre",
+    "scope": "sql",
+    "column_names": [
+      "gid",
+      "genre"
+    ],
+    "column_types": [
+      "int(11)",
+      "text"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "keyword",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "keyword"
+    ],
+    "column_types": [
+      "int(11)",
+      "text"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "made_by",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "pid"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "pid"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "movie",
+    "scope": "cypher",
+    "column_names": [
+      "mid",
+      "title",
+      "release_year",
+      "title_aka",
+      "budget"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "int(11)",
+      "text",
+      "text"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "producer",
+    "scope": "sql",
+    "column_names": [
+      "pid",
+      "gender",
+      "name",
+      "nationality",
+      "birth_city",
+      "birth_year"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "text",
+      "text",
+      "text",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "tags",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "kid"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "kid"
+    ]
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "tv_series",
+    "scope": "sql",
+    "column_names": [
+      "sid",
+      "title",
+      "release_year",
+      "num_of_seasons",
+      "num_of_episodes",
+      "title_aka",
+      "budget"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "text",
+      "text"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "writer",
+    "scope": "sql",
+    "column_names": [
+      "wid",
+      "gender",
+      "name",
+      "nationality",
+      "birth_city",
+      "birth_year"
+    ],
+    "column_types": [
+      "int(11)",
+      "text",
+      "text",
+      "text",
+      "text",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "imdb",
+    "table_name": "written_by",
+    "scope": "sql",
+    "column_names": [
+      "id",
+      "msid",
+      "wid"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "msid",
+      "wid"
+    ]
+  }
+]

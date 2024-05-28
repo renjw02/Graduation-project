@@ -1,0 +1,752 @@
+[
+  {
+    "input_sequence": "how many buttercup kitchen are there in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select count( * ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.name = \"buttercup kitchen\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many chinese restaurants are there in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"chinese\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many places for chinese food are there in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"chinese\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many chinese places are there in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"chinese\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many places for chinese are there in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"chinese\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many jamerican cuisine are there in santa cruz county ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.county = \"santa cruz county\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.name = \"jamerican cuisine\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is jamerican cuisine ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.name = \"jamerican cuisine\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is the best french restaurant in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "What is the best french in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "What is the best place in san francisco for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Give me the best place in san francisco for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Where is the best french in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Give me the best french in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Where is the best french restaurant in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Give me the best restaurant in san francisco for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Give me the best french restaurant in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "What is the best restaurant in san francisco for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "Where is the best restaurant in san francisco for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" and restaurant.rating = ( select max( restaurant.rating ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.food_type = \"french\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is denny in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.name = \"denny\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good restaurants on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good restaurants on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is a good restaurant on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can we find a restaurant in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a restaurant in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can we find some restaurants in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a restaurant in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants good for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some restaurants good for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many places for french food are there in palo alto ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select count( * ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"palo alto\" and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many french restaurants are there in palo alto ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select count( * ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"palo alto\" and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many french restaurant are there in palo alto ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select count( * ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"palo alto\" and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many places for french are there in palo alto ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select count( * ) from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"palo alto\" and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many italian restaurants are in the yolo county ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.county = \"yolo county\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"italian\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat french food in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "how many denny are there in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select count( * ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.name = \"denny\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good restaurants in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is a good restaurant in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good restaurants in alameda ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"alameda\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good restaurant on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some good arabic -s on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good arabic restaurant on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good places for arabic on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good arabic on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants good for arabic food on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good place on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good place on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat arabic food on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good places on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a arabic restaurant on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a restaurant on buchanan in san francisco that serves good arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a restaurant on buchanan in san francisco that serves good arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good restaurants on buchanan in san francisco for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good places for arabic on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat some good arabic food on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good arabic on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some restaurants good for arabic food on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some good places for arabic on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good arabic restaurant on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good arabic -s on buchanan in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and location.street_name = \"buchanan\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat french food in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name } and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good restaurants in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name } and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good restaurants in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name } and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is a good restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name } and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a restaurant on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can we find a restaurant on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can we find some restaurants on bethel island rd in bethel island ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"bethel island\" and location.street_name = \"bethel island rd\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is the best restaurant in the bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is the best restaurant in bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is the best restaurant in bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is the best american restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is the best american restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is the best american in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me the best restaurant in the bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me the best restaurant in bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what is the best restaurant in the bay area for american food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is the best american in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me the best american in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me the best american restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"american\" and restaurant.rating = ( select max( restaurant.rating ) from { match (geographic:geographic) where geographic.region = \"bay area\" return geographic } join restaurant on geographic.city_name = restaurant.city_name where restaurant.food_type = \"american\" )",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can we find some restaurants in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name }",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name }",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name }",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i find a restaurant in the bay area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ { match _ where _ return _ } | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name in { match (g:geographic) where g.region = \"bay area\" return g.city_name }",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants good for french food in the yosemite and mono lake area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good places in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good french restaurant in the yosemite and mono lake area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good place in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some restaurants good for french food in the yosemite and mono lake area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good place in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good restaurant in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good restaurants in the yosemite and mono lake area for french food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good french restaurant in the yosemite and mono lake area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat some good french food in the yosemite and mono lake area ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from { match _ where _ return _ } _ where _ | select location.house_number , restaurant.name from { match (geographic:geographic) where geographic.region = \"yosemite and mono lake area\" return geographic } join location on geographic.city_name = location.city_name join restaurant on location.restaurant_id = restaurant.restaurant_id where restaurant.city_name = geographic.city_name and restaurant.food_type = \"french\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some restaurants good for arabic food in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good places in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some good arabic restaurants in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "show me a good arabic restaurant in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good arabic in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good arabic restaurant in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good place in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some good arabic -s in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a restaurant in mountain view that serves good arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good restaurants in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some restaurants good for arabic food in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i eat some good arabic food in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good places for arabic in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good arabic in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a restaurant in mountain view that serves good arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good arabic restaurants in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where are some good places for arabic in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me some good arabic -s in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "give me a good restaurant in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good arabic restaurant in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "what are some good places for arabic in mountain view ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good restaurant in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a good place in mountain view for arabic food ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"mountain view\" and restaurant.food_type = \"arabic\" and restaurant.rating > 2.5",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where can i find a jamerican cuisine in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.name = \"jamerican cuisine\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is jamerican cuisine in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.name = \"jamerican cuisine\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  },
+  {
+    "input_sequence": "where is a jamerican cuisine in san francisco ? | sql : restaurant , location | cypher : geographic | restaurant : restaurant.id , restaurant.name , restaurant.food_type , restaurant.city_name , restaurant.rating | location : location.restaurant_id , location.house_number , location.street_name , location.city_name | geographic : geographic.city_name , geographic.county , geographic.region",
+    "output_sequence": "select _ from _ where _ | select location.house_number , restaurant.name from location join restaurant on location.restaurant_id = restaurant.restaurant_id where location.city_name = \"san francisco\" and restaurant.name = \"jamerican cuisine\"",
+    "db_id": "restaurants",
+    "tc_original": []
+  }
+]

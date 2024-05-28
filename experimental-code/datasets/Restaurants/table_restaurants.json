@@ -1,0 +1,63 @@
+[
+  {
+    "db_id": "restaurants",
+    "table_name": "RESTAURANT",
+    "scope": "sql",
+    "column_names": [
+      "ID",
+      "NAME",
+      "FOOD_TYPE",
+      "CITY_NAME",
+      "RATING"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)",
+      "\"decimal(1,1)\""
+    ],
+    "fk": [
+      "CITY_NAME"
+    ]
+  },
+  {
+    "db_id": "restaurants",
+    "table_name": "LOCATION",
+    "scope": "sql",
+    "column_names": [
+      "RESTAURANT_ID",
+      "HOUSE_NUMBER",
+      "STREET_NAME",
+      "CITY_NAME"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)"
+    ],
+    "fk": [
+      "RESTAURANT_ID",
+      "CITY_NAME"
+    ]
+  },
+  {
+    "db_id": "restaurants",
+    "table_name": "GEOGRAPHIC",
+    "scope": "cypher",
+    "column_names": [
+      "CITY_NAME",
+      "COUNTY",
+      "REGION"
+    ],
+    "column_types": [
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)"
+    ],
+    "fk": [
+      "CITY_NAME"
+    ]
+  }
+]

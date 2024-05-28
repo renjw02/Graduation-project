@@ -1,0 +1,543 @@
+[
+  {
+    "db_id": "advising",
+    "table_name": "AREA",
+    "scope": "cypher",
+    "column_names": [
+      "course_id",
+      "area"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(30)"
+    ],
+    "fk": [
+      "course_id",
+      "area"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "COMMENT_INSTRUCTOR",
+    "scope": "sql",
+    "column_names": [
+      "instructor_id",
+      "student_id",
+      "score",
+      "comment_text"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "varchar(400)"
+    ],
+    "fk": [
+      "score",
+      "comment_text"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "COURSE",
+    "scope": "sql",
+    "column_names": [
+      "COURSE_ID",
+      "NAME",
+      "DEPARTMENT",
+      "NUMBER",
+      "CREDITS",
+      "ADVISORY_REQUIREMENT",
+      "ENFORCED_REQUIREMENT",
+      "DESCRIPTION",
+      "NUM_SEMESTERS",
+      "NUM_ENROLLED",
+      "HAS_DISCUSSION",
+      "HAS_LAB",
+      "HAS_PROJECTS",
+      "HAS_EXAMS",
+      "NUM_REVIEWS",
+      "CLARITY_SCORE",
+      "EASINESS_SCORE",
+      "HELPFULNESS_SCORE"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(16384)",
+      "int(11)",
+      "int(11)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "NAME",
+      "DEPARTMENT",
+      "NUMBER",
+      "CREDITS",
+      "ADVISORY_REQUIREMENT",
+      "ENFORCED_REQUIREMENT",
+      "DESCRIPTION",
+      "NUM_SEMESTERS",
+      "NUM_ENROLLED",
+      "HAS_DISCUSSION",
+      "HAS_LAB",
+      "HAS_PROJECTS",
+      "HAS_EXAMS",
+      "NUM_REVIEWS",
+      "CLARITY_SCORE",
+      "EASINESS_SCORE",
+      "HELPFULNESS_SCORE"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "COURSE_OFFERING",
+    "scope": "sql",
+    "column_names": [
+      "OFFERING_ID",
+      "COURSE_ID",
+      "SEMESTER",
+      "SECTION_NUMBER",
+      "START_TIME",
+      "END_TIME",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+      "SUNDAY",
+      "HAS_FINAL_PROJECT",
+      "HAS_FINAL_EXAM",
+      "TEXTBOOK",
+      "CLASS_ADDRESS",
+      "ALLOW_AUDIT"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "time",
+      "time",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(1)",
+      "varchar(30)",
+      "varchar(30)",
+      "varchar(1)"
+    ],
+    "fk": [
+      "COURSE_ID",
+      "SEMESTER",
+      "SECTION_NUMBER",
+      "START_TIME",
+      "END_TIME",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
+      "SUNDAY",
+      "HAS_FINAL_PROJECT",
+      "HAS_FINAL_EXAM",
+      "TEXTBOOK",
+      "CLASS_ADDRESS",
+      "ALLOW_AUDIT"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "COURSE_PREREQUISITE",
+    "scope": "sql",
+    "column_names": [
+      "pre_course_id",
+      "course_id"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "advising",
+    "table_name": "COURSE_TAGS_COUNT",
+    "scope": "sql",
+    "column_names": [
+      "COURSE_ID",
+      "CLEAR_GRADING",
+      "POP_QUIZ",
+      "GROUP_PROJECTS",
+      "INSPIRATIONAL",
+      "LONG_LECTURES",
+      "EXTRA_CREDIT",
+      "FEW_TESTS",
+      "GOOD_FEEDBACK",
+      "TOUGH_TESTS",
+      "HEAVY_PAPERS",
+      "CARES_FOR_STUDENTS",
+      "HEAVY_ASSIGNMENTS",
+      "RESPECTED",
+      "PARTICIPATION",
+      "HEAVY_READING",
+      "TOUGH_GRADER",
+      "HILARIOUS",
+      "WOULD_TAKE_AGAIN",
+      "GOOD_LECTURE",
+      "NO_SKIP"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "CLEAR_GRADING",
+      "POP_QUIZ",
+      "GROUP_PROJECTS",
+      "INSPIRATIONAL",
+      "LONG_LECTURES",
+      "EXTRA_CREDIT",
+      "FEW_TESTS",
+      "GOOD_FEEDBACK",
+      "TOUGH_TESTS",
+      "HEAVY_PAPERS",
+      "CARES_FOR_STUDENTS",
+      "HEAVY_ASSIGNMENTS",
+      "RESPECTED",
+      "PARTICIPATION",
+      "HEAVY_READING",
+      "TOUGH_GRADER",
+      "HILARIOUS",
+      "WOULD_TAKE_AGAIN",
+      "GOOD_LECTURE",
+      "NO_SKIP"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "GSI",
+    "scope": "sql",
+    "column_names": [
+      "course_offering_id",
+      "student_id"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": []
+  },
+  {
+    "db_id": "advising",
+    "table_name": "INSTRUCTOR",
+    "scope": "sql",
+    "column_names": [
+      "INSTRUCTOR_ID",
+      "NAME",
+      "UNIQNAME"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)"
+    ],
+    "fk": [
+      "NAME",
+      "UNIQNAME"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "JOBS",
+    "scope": "sql",
+    "column_names": [
+      "JOB_ID",
+      "JOB_TITLE",
+      "DESCRIPTION",
+      "REQUIREMENT",
+      "CITY",
+      "STATE",
+      "COUNTRY",
+      "ZIP"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(100)",
+      "varchar(1000)",
+      "varchar(1000)",
+      "varchar(20)",
+      "varchar(15)",
+      "varchar(20)",
+      "int(5)"
+    ],
+    "fk": [
+      "JOB_TITLE",
+      "DESCRIPTION",
+      "REQUIREMENT",
+      "CITY",
+      "STATE",
+      "COUNTRY",
+      "ZIP"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "OFFERING_INSTRUCTOR",
+    "scope": "sql",
+    "column_names": [
+      "OFFERING_INSTRUCTOR_ID",
+      "OFFERING_ID",
+      "INSTRUCTOR_ID"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)"
+    ],
+    "fk": [
+      "OFFERING_ID",
+      "INSTRUCTOR_ID"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "PROGRAM",
+    "scope": "sql",
+    "column_names": [
+      "program_id",
+      "name",
+      "college",
+      "introduction"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)",
+      "varchar(255)"
+    ],
+    "fk": [
+      "name",
+      "college",
+      "introduction"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "PROGRAM_COURSE",
+    "scope": "sql",
+    "column_names": [
+      "program_id",
+      "course_id",
+      "workload",
+      "category"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "varchar(11)"
+    ],
+    "fk": [
+      "workload"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "PROGRAM_REQUIREMENT",
+    "scope": "sql",
+    "column_names": [
+      "program_id",
+      "category",
+      "min_credit",
+      "additional_req"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(11)",
+      "int(11)",
+      "varchar(100)"
+    ],
+    "fk": [
+      "min_credit",
+      "additional_req"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "REQUIREMENT",
+    "scope": "sql",
+    "column_names": [
+      "REQUIREMENT_ID",
+      "REQUIREMENT",
+      "COLLEGE"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)"
+    ],
+    "fk": [
+      "REQUIREMENT",
+      "COLLEGE"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "SEMESTER",
+    "scope": "sql",
+    "column_names": [
+      "semester_id",
+      "semester",
+      "year"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(4)",
+      "int(11)"
+    ],
+    "fk": [
+      "semester",
+      "year"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "STUDENT",
+    "scope": "sql",
+    "column_names": [
+      "student_id",
+      "lastname",
+      "firstname",
+      "program_id",
+      "declare_major",
+      "total_credit",
+      "total_gpa",
+      "entered_as",
+      "admit_term",
+      "predicted_graduation_semester",
+      "degree",
+      "minor",
+      "internship"
+    ],
+    "column_types": [
+      "int(11)",
+      "varchar(255)",
+      "varchar(255)",
+      "int(11)",
+      "varchar(255)",
+      "int(11)",
+      "float(3,2)",
+      "varchar(11)",
+      "int(4)",
+      "int(11)",
+      "varchar(10)",
+      "varchar(10)",
+      "varchar(10)"
+    ],
+    "fk": [
+      "lastname",
+      "firstname",
+      "program_id",
+      "declare_major",
+      "total_credit",
+      "total_gpa",
+      "entered_as",
+      "admit_term",
+      "predicted_graduation_semester",
+      "degree",
+      "minor",
+      "internship"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "STUDENT_RECORD",
+    "scope": "sql",
+    "column_names": [
+      "student_id",
+      "course_id",
+      "semester",
+      "grade",
+      "how",
+      "transfer_source",
+      "earn_credit",
+      "repeat_term",
+      "test_id"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "int(11)",
+      "varchar(10)",
+      "varchar(10)",
+      "varchar(10)",
+      "varchar(1)",
+      "varchar(10)",
+      "varchar(10)"
+    ],
+    "fk": [
+      "grade",
+      "how",
+      "transfer_source",
+      "repeat_term",
+      "test_id"
+    ]
+  },
+  {
+    "db_id": "advising",
+    "table_name": "TA",
+    "scope": "sql",
+    "column_names": [
+      "campus_job_id",
+      "student_id",
+      "location"
+    ],
+    "column_types": [
+      "int(11)",
+      "int(11)",
+      "varchar(10)"
+    ],
+    "fk": [
+      "location"
+    ]
+  }
+]
