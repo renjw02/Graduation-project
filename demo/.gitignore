@@ -32,5 +32,7 @@ frontend/*.tsbuildinfo
 
 # backend
 backend/model
+backend/__pycache__
+backend/dataset
 
 backend/.vscode/*

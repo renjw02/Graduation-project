@@ -1,6 +1,13 @@
 from flask import Flask, request
+from flask_cors import CORS
 
+from Config import DevelopmentConfig
+from predict import model_predict, execute
+
+config = DevelopmentConfig()
 app = Flask(__name__)
+cors = CORS(app)
+app.config.from_object(config)
 
 @app.route('/')
 def hello():
@@ -18,14 +25,38 @@ def predict():
         results: list
     """
     data = request.get_json()
+    # print(data)
     question = data['question']
+    dataset = data['dataset']
+
+    pred, id, cost_time = model_predict(question, device=app.config['DEVICE'], dataset=dataset)
+
+    if pred is None:
+        return {
+            'pql': None,
+            'results': None,
+            'cols': None,
+            'cost_time': cost_time,
+            'success': False,
+        }, 200
+
+    print('pred', pred)
+
+    results, cols = execute(pred, id, dataset, question)
+    success = True
+    if results is None:
+        success = False
+
+    print('cols', cols)
+    print('results', results)
+
     return {
-        'pql': 'SELECT * FROM table',
-        'results': [
-            {'name': 'Alice', 'age': 25},
-            {'name': 'Bob', 'age': 30}
-        ]
+        'pql': pred.replace('table_', 'table_'+id),
+        'results': results,
+        'cols': cols,
+        'cost_time': cost_time,
+        'success': success,
     }, 200
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=app.config['IP'], debug=True)
